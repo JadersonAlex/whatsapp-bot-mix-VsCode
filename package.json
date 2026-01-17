@@ -1,0 +1,25 @@
+{
+  "name": "mix-rub",
+  "version": "1.0.0",
+  "main": "./bot/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "clear": "rmdir /s /q .wwebjs_auth ; rmdir /s /q .wwebjs_cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chromedriver": "^143.0.4",
+    "dotenv": "^17.2.3",
+    "puppeteer": "^24.34.0",
+    "qrcode-terminal": "^0.12.0",
+    "selenium-webdriver": "^4.33.0",
+    "whatsapp-web.js": "^1.34.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
