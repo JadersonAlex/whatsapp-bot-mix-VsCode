@@ -1,147 +1,164 @@
-# whatsapp-bot-mix-VsCode
+# 📦 wpp-bot-mix  
+Automação de relatórios de estoque do **RUB** via **WhatsApp**  
 
+Este projeto tem como objetivo facilitar o processo de consulta e envio de relatórios de estoque para empresas atacadistas que utilizam a solução **RUB (GIC)**.  
+De forma automática, a aplicação recebe um **código de fornecedor via WhatsApp**, gera um relatório em PDF no sistema RUB e envia o arquivo de volta no grupo designado.
 
-🚀 Nome do Seu Projeto
+---
 
-Automação inteligente de interações via WhatsApp com funcionalidades personalizadas para sua empresa ou fluxo de trabalho.
+## 📑 Índice
+- [Visão Geral](#visão-geral)
+- [Tecnologias e Dependências](#tecnologias-e-dependências)
+- [Pré-Requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Como Funciona](#como-funciona)
+- [Execução](#execução)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Contribuições](#contribuições)
+- [Licença](#licença)
 
-📌 Índice
+---
 
-📖 Sobre
+## 🚀 Visão Geral
+- Escuta mensagens em um grupo específico do WhatsApp.  
+- Valida se a mensagem contém **apenas números** (código de fornecedor - exemplo: código referente a Coca-Cola.).
+- Executa fila de requisições, processando **um código por vez**.  
+- Acessa o sistema RUB, realiza login e aplica filtros:  
+  - Estoque maior que zero.  
+  - Código do fornecedor.  
+- Gera relatório em **PDF**:  
+  - Se houver estoque → envia o PDF no grupo.  
+  - Se não houver estoque ou código inválido → envia mensagem de aviso no grupo.  
 
-⚙️ Funcionalidades
+---
 
-🧠 Como Funciona
+## 🛠️ Tecnologias e Dependências
+O projeto utiliza as seguintes bibliotecas e ferramentas:
 
-🛠️ Tecnologias Utilizadas
+- [chromedriver](https://chromedriver.chromium.org/) → automação do navegador.  
+- [dotenv](https://www.npmjs.com/package/dotenv) → gerenciamento de variáveis de ambiente.  
+- [qrcode-terminal](https://www.npmjs.com/package/qrcode-terminal) → exibição do QR Code para login no WhatsApp Web.  
+- [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) → integração com o WhatsApp.  
+- [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) → automação do sistema RUB.  
+- [nodemon](https://www.npmjs.com/package/nodemon) (dev) → hot reload em ambiente de desenvolvimento.  
 
-🧩 Pré-requisitos
+---
 
-🚀 Instalação
+## 📋 Pré-Requisitos
+- [Node.js](https://nodejs.org/) **>= 18.x**  
+- [npm](https://www.npmjs.com/)  
+- Navegador **Google Chrome** instalado.  
+- Dependências listadas no `package.json`.  
 
-🔧 Configuração
+---
 
-▶️ Execução
+## ⚙️ Configuração
+Antes de rodar a aplicação, edite o arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
-🗂️ Estrutura do Projeto
+```env
+WHATSAPP_GROUP_ID= # ID do grupo WhatsApp onde a automação vai atuar
+RUB_IP=            # Endereço do sistema RUB - Ex: 10.48.69.146
+RUB_USER=          # Usuário de login no RUB - Ex: Matrícula
+RUB_PASSWORD=      # Senha de login no RUB - Ex: SuaSenhaManeira123
+```
+Essas credenciais serão usadas para autenticação e acesso ao sistema interno RUB.
 
-🤝 Contribuições
+# 🔄 Como Funciona
 
-📄 Licença
+O bot inicia e gera um **QR Code** no terminal para autenticação no WhatsApp Web.  
 
-📖 Sobre
+Após autenticado, o grupo definido no `.env` fica em modo de **escuta**.  
 
-Este projeto foi desenvolvido para automatizar respostas e tarefas dentro de um grupo ou conta WhatsApp via WhatsApp Web, simplificando o atendimento, envio de informações e relatórios de forma automática. A ideia é que o bot interprete mensagens, execute ações específicas e responda com dados ou arquivos estruturados.
+Quando alguém envia uma mensagem:
 
-⚙️ Funcionalidades
+- ✅ **Se a mensagem contiver somente números** → é considerada um **código válido de fornecedor** e adicionada à **fila de execução**.  
+- ❌ **Se a mensagem contiver letras, símbolos ou múltiplos códigos** → o bot envia um **reply automático** avisando que deve ser enviado **apenas um código numérico por vez**.  
 
-📥 Escuta mensagens em grupos ou chats configurados
+Cada código na fila é processado em ordem:
 
-🧠 Lógica de interpretação de comandos do usuário
+1. Login no sistema RUB com as credenciais do `.env`.  
+2. Abertura da página de produtos.  
+3. Aplicação dos filtros:  
+   - Estoque **maior do que zero**.  
+   - Código do fornecedor.  
+4. Validação dos resultados:  
+   - ✅ Se houver estoque → download do PDF e envio no grupo como **reply** da mensagem original.  
+   - ❌ Se não houver estoque ou o código for inválido → envio de um **reply de aviso** no grupo.  
 
-🔄 Processamento de tarefas em fila (ex.: gerar relatório, consultar API)
+➡️ O próximo código da fila só é processado **após a execução anterior terminar completamente**.  
 
-📤 Envio de respostas automáticas (texto, documentos, imagens)
+---
 
-📊 Relatórios personalizados (ex.: estoque, alertas, consultas)
+# ▶️ Execução
 
-🔐 Controle baseado em permissões e identificadores
+Instale as dependências e inicie a aplicação:
 
-🧠 Como Funciona
-
-O bot se conecta ao WhatsApp Web e aguarda autenticação via QR code.
-
-Após autorizado, monitora mensagens no grupo ou chat especificado.
-
-Quando um comando reconhecido é recebido:
-
-Valida formato e conteúdo.
-
-Executa operação definida (ex.: busca de relatório).
-
-Retorna resposta ou arquivo ao mesmo chat.
-
-🛠️ Tecnologias Utilizadas
-
-⭐ Node.js – Ambiente de execução JavaScript
-
-🤖 whatsapp-web.js – Integração com WhatsApp Web
-
-📦 dotenv – Carregamento de variáveis de ambiente
-
-🕹️ Selenium (ou Puppeteer) – Automação de interface (se aplicável)
-
-🛠️ Outras bibliotecas auxiliares conforme necessidade
-
-Adicione aqui outras libs ou ferramentas que seu projeto utiliza.
-
-🧩 Pré-requisitos
-
-Antes de iniciar, certifique-se de ter instalado em sua máquina:
-
-✔️ Node.js (versão 18.x ou superior)
-✔️ npm
-✔️ Navegador Google Chrome
-
-🚀 Instalação
-
-Clone o repositório e instale as dependências:
-
-git clone https://github.com/SEU_USUARIO/SEU_PROJETO.git
-cd SEU_PROJETO
+```bash
+# instalar dependências
 npm install
 
-🔧 Configuração
-
-Crie um arquivo .env na raiz do projeto com as variáveis necessárias:
-
-WHATSAPP_SESSION= # ID da sessão ou credencial
-WHATSAPP_GROUP_ID= # ID do grupo ou chat onde o bot atuará
-API_KEY= # Chave de API de terceiros, se usar
-OUTROS_PARAMETROS= # Outros valores necessários
-
-
-Ajuste as variáveis conforme o que seu bot realmente usa.
-
-▶️ Execução
-
-Inicie o bot com:
-
+# rodar o bot
 npm start
+```
 
+Caso esteja em ambiente corporativo e o proxy ou firewall bloqueie o Puppeteer (navegador), utilize:
+```bash
+# pulando puppeteer:
+$env:SKIP_PUPPETEER_DOWNLOAD="true"
 
-Ao iniciar, será exibido um QR Code no terminal para autenticação com WhatsApp Web. Basta escanear com seu celular para conectar.
+# instalar dependências
+npm install
 
-🗂️ Estrutura do Projeto
-SEU_PROJETO/
-├── bot/                  # Lógica principal do bot
-│   ├── commands/         # Comandos / funções do bot
-│   ├── handlers.js       # Tratadores de mensagens
-│   └── index.js          # Entrada principal
-├── .env                  # Variáveis de ambiente
-├── node_modules/         # Dependências
-├── package.json
-└── README.md
+# rodar o bot
+npm start
+```
 
-🤝 Contribuições
+Durante a primeira execução, será exibido um QR Code no terminal.
+Escaneie com o WhatsApp para autenticar o bot.
 
-Contribuições são bem-vindas!
-Para colaborar com o projeto:
+# 📂 Estrutura do Projeto
 
-Faça um fork do repositório.
+```bash
+wpp-bot-mix/
+├── .wwebjs_auth/      # Cache de autenticação do WhatsApp Web (É criado automaticamente)
+├── .wwebjs_cache/     # Cache do WhatsApp Web (É criado automaticamente)
+├── bot/               # Código principal do bot
+│   ├── downloads/     # Relatórios gerados em PDF
+│   │   └── 35559.pdf  # Exemplo de relatório baixado (É baixado de acordo com a demanda, é limpado assim que outro é solicitado)
+│   ├── index.js       # Ponto de entrada da automação (Responsável pelo WhatsApp Web)
+│   └── selenium.js    # Automação do sistema RUB via Selenium
+├── node_modules/      # Dependências do projeto (É gerado automaticamente depois do npm install)
+├── .env               # Variáveis de ambiente
+├── .gitignore         # Arquivos/dirs ignorados pelo Git
+├── package-lock.json  # Lock das dependências
+├── package.json       # Scripts e dependências do projeto
+└── README.md          # Documentação do projeto
+```
 
-Crie uma branch com sua feature:
-git checkout -b feature/nova-funcionalidade
+# 🤝 Contribuições
+
+Contribuições são bem-vindas!  
+Para colaborar:
+
+Faça um fork do projeto.
+
+Crie uma branch com sua feature/bugfix:
+
+```git checkout -b minha-feature```
 
 Commit suas alterações:
-git commit -m "feat: descrição da feature"
 
-Envie para sua branch:
-git push origin feature/nova-funcionalidade
+```git commit -m 'feat: minha nova feature'```
+
+Push para a branch:
+
+```git push origin minha-feature```
 
 Abra um Pull Request.
 
-📄 Licença
+# 📜 Licença
 
-Este projeto está licenciado sob a MIT License — veja o arquivo LICENSE
- para detalhes.
+Este projeto é distribuído sob a licença MIT.  
+Sinta-se livre para usar, modificar e contribuir.
+
