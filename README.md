@@ -6,6 +6,78 @@ De forma automática, a aplicação recebe um **código de fornecedor via WhatsA
 
 ---
 
+# ⚙️ Como Instalar
+Automação de relatórios de estoque do **Node Js** via **WhatsApp**  
+
+https://nodejs.org/en/download
+
+Este projeto tem como objetivo facilitar o processo de consulta e envio de relatórios de estoque para empresas atacadistas que utilizam a solução **RUB (GIC)**.  
+De forma automática, a aplicação recebe um **código de fornecedor via WhatsApp**, gera um relatório em PDF no sistema RUB e envia o arquivo de volta no grupo designado.
+
+
+🧩 Requisitos
+Node.js ≥ 20.10
+npm ≥ 10
+Google Chrome instalado
+(o Selenium usa o Chrome padrão; o caminho é configurado automaticamente)
+
+---
+
+
+📖 Tutorial
+1️⃣ Clonar o repositório
+git clone (link do projeto)
+cd wpp-bot
+2️⃣ Instalar dependências
+Certifique-se de ter Node 20+ instalado.
+
+npm install
+3️⃣ Rodar em modo desenvolvimento (TypeScript)
+Ideal para ajustar e testar.
+
+npm ls
+serve para listar todas as dependências instaladas em um projeto Node.js,
+mostrando quais pacotes estão instalados, suas versões e a hierarquia de dependências (ou seja, quem depende de quem).
+
+4️⃣ Instalar Dependência
+O comando  serve para instalar pacotes no projeto. 
+
+npm install (sem parâmetros)
+Instala todas as dependências listadas no package.json e cria (ou atualiza) a pasta node_modules e o arquivo package-lock.json.
+
+npm install nome-do-pacote
+Instala um pacote específico e o adiciona automaticamente em dependencies no package.json.
+
+npm install nome-do-pacote --save-dev ou -D
+Instala o pacote como dependência de desenvolvimento, ficando em devDependencies.
+
+npm install -g nome-do-pacote
+Instala o pacote de forma global, disponível em todo o sistema (ex: nodemon, npm, eslint).
+
+npm install nome-do-pacote@versão
+Instala uma versão específica do pacote.
+
+npm install
+
+4️⃣ Desinstalar Dependência
+O comando npm uninstall serve para remover pacotes do projeto.
+
+npm uninstall nome-do-pacote
+Remove o pacote do node_modules e também do package.json.
+
+npm uninstall nome-do-pacote --save-dev
+Remove o pacote das dependências de desenvolvimento.
+
+npm uninstall -g nome-do-pacote
+Remove um pacote instalado globalmente.
+
+npm uninstall nome-do-pacote@versão
+Remove uma versão específica (quando aplicável).
+
+npm uninstall
+
+
+
 ## 📑 Índice
 - [Visão Geral](#visão-geral)
 - [Tecnologias e Dependências](#tecnologias-e-dependências)
