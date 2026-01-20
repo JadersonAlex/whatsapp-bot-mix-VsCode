@@ -19,11 +19,12 @@ De forma automática, a aplicação recebe um **código de fornecedor via WhatsA
 
 ## 🧩 Requisitos
 
-- **Node.js ≥ 20.10**
-- **npm ≥ 10**
-- **Google Chrome instalado**  
-  (o Selenium usa o Chrome padrão; o caminho é configurado automaticamente)
+- [Node.js](https://nodejs.org/) **>= 18.x**  
+- [npm](https://www.npmjs.com/)  
+- Navegador **Google Chrome** instalado.  
+- Dependências listadas no `package.json`. 
 
+ 
 
 ---
 
@@ -154,13 +155,7 @@ O projeto utiliza as seguintes bibliotecas e ferramentas:
 
 ---
 
-## 📋 Pré-Requisitos
-- [Node.js](https://nodejs.org/) **>= 18.x**  
-- [npm](https://www.npmjs.com/)  
-- Navegador **Google Chrome** instalado.  
-- Dependências listadas no `package.json`.  
 
----
 
 ## ⚙️ Configuração
 Antes de rodar a aplicação, edite o arquivo `.env` na raiz do projeto com as seguintes variáveis:
