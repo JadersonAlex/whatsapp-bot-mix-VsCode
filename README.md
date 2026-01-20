@@ -31,50 +31,82 @@ cd wpp-bot
 2️⃣ Instalar dependências
 Certifique-se de ter Node 20+ instalado.
 
+```bash
 npm install
+```
+
 3️⃣ Rodar em modo desenvolvimento (TypeScript)
 Ideal para ajustar e testar.
 
-npm ls
 serve para listar todas as dependências instaladas em um projeto Node.js,
 mostrando quais pacotes estão instalados, suas versões e a hierarquia de dependências (ou seja, quem depende de quem).
+
+```bash
+npm ls
+```
+
+
 
 4️⃣ Instalar Dependência
 O comando  serve para instalar pacotes no projeto. 
 
-npm install (sem parâmetros)
+```bash
+npm install 
+```
+
+(sem parâmetros)
 Instala todas as dependências listadas no package.json e cria (ou atualiza) a pasta node_modules e o arquivo package-lock.json.
 
+```bash
 npm install nome-do-pacote
+```
 Instala um pacote específico e o adiciona automaticamente em dependencies no package.json.
 
+```bash
 npm install nome-do-pacote --save-dev ou -D
+```
 Instala o pacote como dependência de desenvolvimento, ficando em devDependencies.
 
+```bash
 npm install -g nome-do-pacote
+```
 Instala o pacote de forma global, disponível em todo o sistema (ex: nodemon, npm, eslint).
 
+```bash
 npm install nome-do-pacote@versão
+```
 Instala uma versão específica do pacote.
 
+```bash
 npm install
+```
 
 4️⃣ Desinstalar Dependência
 O comando npm uninstall serve para remover pacotes do projeto.
 
+```bash
 npm uninstall nome-do-pacote
+```
 Remove o pacote do node_modules e também do package.json.
 
+```bash
 npm uninstall nome-do-pacote --save-dev
+```
 Remove o pacote das dependências de desenvolvimento.
 
+```bash
 npm uninstall -g nome-do-pacote
+```
 Remove um pacote instalado globalmente.
 
+```bash
 npm uninstall nome-do-pacote@versão
+```
 Remove uma versão específica (quando aplicável).
 
+```bash
 npm uninstall
+```
 
 
 
