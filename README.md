@@ -15,16 +15,21 @@ Este projeto tem como objetivo facilitar o processo de consulta e envio de relat
 De forma automática, a aplicação recebe um **código de fornecedor via WhatsApp**, gera um relatório em PDF no sistema RUB e envia o arquivo de volta no grupo designado.
 
 
-🧩 Requisitos
-Node.js ≥ 20.10
-npm ≥ 10
-Google Chrome instalado
-(o Selenium usa o Chrome padrão; o caminho é configurado automaticamente)
+---
+
+## 🧩 Requisitos
+
+- **Node.js ≥ 20.10**
+- **npm ≥ 10**
+- **Google Chrome instalado**  
+  (o Selenium usa o Chrome padrão; o caminho é configurado automaticamente)
+
 
 ---
 
 
-📖 Tutorial
+##  📖 Comandos básicos
+
 1️⃣ Clonar o repositório
 git clone (link do projeto)
 cd wpp-bot
